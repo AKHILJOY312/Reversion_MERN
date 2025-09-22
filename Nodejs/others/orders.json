@@ -1,0 +1,10 @@
+{
+  "product1": {
+    "rating1": 4,
+    "rating2": 3.5
+  },
+  "product2": {
+    "rating1": 1,
+    "rating2": 2
+  }
+}
