@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import './App.css';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import "./App.css";
+import axios from "axios";
 
 // Weather Component
 function Weather() {
@@ -8,20 +8,25 @@ function Weather() {
 
   useEffect(() => {
     axios
-      .get(`https://api.openweathermap.org/data/2.5/weather?q=Thrissur&appid=8985c5313f4421fd92664ea35e684e62`)
+      .get(`openWeatherAPi_key`)
       .then((response) => setWeatherData(response.data))
-      .catch((error) => console.error('Error fetching weather data:', error));
+      .catch((error) => console.error("Error fetching weather data:", error));
   }, []);
 
-  if (!weatherData) return <div className="card loading">Loading weather data...</div>;
+  if (!weatherData)
+    return <div className="card loading">Loading weather data...</div>;
 
   const tempCelsius = (weatherData.main.temp - 273.15).toFixed(1);
 
   return (
     <div className="card weather-card">
       <h2>Weather in {weatherData.name}</h2>
-      <p><strong>Temperature:</strong> {tempCelsius} °C</p>
-      <p><strong>Description:</strong> {weatherData.weather[0].description}</p>
+      <p>
+        <strong>Temperature:</strong> {tempCelsius} °C
+      </p>
+      <p>
+        <strong>Description:</strong> {weatherData.weather[0].description}
+      </p>
     </div>
   );
 }
@@ -36,9 +41,7 @@ function Welcome({ name }) {
 }
 
 function MyButton() {
-  return (
-    <button>I'm a button</button>
-  );
+  return <button>I'm a button</button>;
 }
 
 // App Component
@@ -51,8 +54,8 @@ function App() {
         <Welcome name="Bob" />
         <Welcome name="Charlie" />
         <Weather />
-        <MyButton/>
-        <img src="" alt="" className='avather' />
+        <MyButton />
+        <img src="" alt="" className="avather" />
       </div>
     </div>
   );

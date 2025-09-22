@@ -2,10 +2,6 @@
 
 console.log("Synchronous Code - Start");
 
-process.nextTick(() => {
-  console.log("Microtask 1: process.nextTick()");
-});
-
 setImmediate(() => {
   console.log("Event Loop Phase 4: setImmediate()");
 });
@@ -19,3 +15,6 @@ Promise.resolve().then(() => {
 setTimeout(() => {
   console.log("Event Loop Phase 3: setTimeout()");
 }, 0);
+process.nextTick(() => {
+  console.log("Microtask 1: process.nextTick()");
+});
