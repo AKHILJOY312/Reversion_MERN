@@ -1,4 +1,4 @@
-//binary search on 2d array
+//binary search on  array
 
 function binarySearch(arr, target) {
   let l = 0;

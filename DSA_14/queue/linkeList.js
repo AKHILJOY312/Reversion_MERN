@@ -1,4 +1,4 @@
-//3.	Queue Using Linked List: Implement a queue using a linked list.
+//Queue Using Linked List: Implement a queue using a linked list.
 
 class Node {
   constructor(val) {

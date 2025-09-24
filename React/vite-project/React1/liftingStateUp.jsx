@@ -13,7 +13,7 @@ function CentimeterInput({ onChange }) {
   );
 }
 
-function LengthConverter() {
+function App() {
   const [length, setLength] = useState("");
 
   const handleCmChange = (value) => {
@@ -33,4 +33,4 @@ function LengthConverter() {
   );
 }
 
-export default LengthConverter;
+export default App;

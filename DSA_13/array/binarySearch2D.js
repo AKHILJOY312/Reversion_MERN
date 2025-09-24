@@ -4,7 +4,7 @@ function binarySearch2D(arr, target) {
   const rows = arr.length;
   const cols = arr[0].length;
   let l = 0;
-  let r = rows * cols - 1; // ✅ Total elements - 1
+  let r = rows * cols - 1;
 
   while (l <= r) {
     const mid = Math.floor((l + r) / 2);
@@ -13,10 +13,10 @@ function binarySearch2D(arr, target) {
     const row = Math.floor(mid / cols);
     const col = mid % cols;
 
-    const midValue = arr[row][col]; // ✅ Get actual element
+    const midValue = arr[row][col];
 
     if (midValue === target) {
-      return [row, col]; // ✅ Return position as [row, col]
+      return [row, col];
     } else if (midValue < target) {
       l = mid + 1;
     } else {
@@ -31,6 +31,6 @@ const arr = [
   [5, 6, 7],
   [8, 9, 10],
 ];
-console.log(binarySearch2D(arr, 3)); // ✅ Output: [0, 2]
-console.log(binarySearch2D(arr, 6)); // ✅ Output: [1, 1]
-console.log(binarySearch2D(arr, 4)); // ✅ Output: -1
+console.log(binarySearch2D(arr, 3)); //  Output: [0, 2]
+console.log(binarySearch2D(arr, 6)); //  Output: [1, 1]
+console.log(binarySearch2D(arr, 4)); //  Output: -1

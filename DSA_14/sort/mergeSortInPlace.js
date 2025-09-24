@@ -3,7 +3,7 @@ function nextGap(gap) {
   return Math.ceil(gap / 2);
 }
 
-function inPlaceMerge(arr, start, mid, end) {
+function inPlaceMerge(arr, start, end) {
   let gap = nextGap(end - start + 1);
 
   while (gap > 0) {
@@ -23,10 +23,10 @@ function inPlaceMerge(arr, start, mid, end) {
 
 function inPlaceMergeSort(arr, l = 0, r = arr.length - 1) {
   if (l < r) {
-    let m = Math.floor((l + r) / 2);
+    let m = Math.floor((l + r) / 2); //find the average between the points
     inPlaceMergeSort(arr, l, m);
     inPlaceMergeSort(arr, m + 1, r);
-    inPlaceMerge(arr, l, m, r);
+    inPlaceMerge(arr, l, r);
   }
 }
 
