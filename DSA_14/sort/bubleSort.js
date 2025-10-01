@@ -1,19 +1,17 @@
 function bubbleSortOptimized(arr) {
   let n = arr.length;
-  let swapped; // Declare a flag
+  let swapped;
 
   for (let i = 0; i < n - 1; i++) {
-    swapped = false; // Reset the flag for each pass
+    swapped = false;
     for (let j = 0; j < n - i - 1; j++) {
       if (arr[j] > arr[j + 1]) {
-        // Swap elements
         let temp = arr[j];
         arr[j] = arr[j + 1];
         arr[j + 1] = temp;
-        swapped = true; // A swap occurred, so set the flag
+        swapped = true;
       }
     }
-    // If no two elements were swapped by inner loop, then break
     if (swapped == false) {
       break;
     }
