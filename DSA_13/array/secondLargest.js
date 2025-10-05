@@ -1,4 +1,4 @@
-//find the second largest elment in the array
+//find the second largest element in the array
 const arr = [2, 10, 5, 3, 4, 8, 6, 9, 12, 12];
 
 function secondLargest(arr) {

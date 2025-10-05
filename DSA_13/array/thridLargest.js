@@ -1,23 +1,30 @@
-//find the third largest elment in the array
-const arr = [2, 10, 5, 3, 4, 8, 6, 9, 12, 12];
+// A corrected function to find the third largest element
+function findThirdLargest(arr) {
+  let first = -Infinity;
+  let second = -Infinity;
+  let third = -Infinity;
 
-function secondLargest(arr) {
-  let first = 0;
-  let second = 0;
-  let third = 0;
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > first) {
+    const current = arr[i];
+
+    if (current > first) {
       third = second;
       second = first;
-      first = arr[i];
-    } else if (second < arr[i] && arr[i] !== first) {
+      first = current;
+    } else if (current > second && current < first) {
       third = second;
-      second = arr[i];
-    } else if (third < arr[i] && arr[i] !== second && arr[i] !== first) {
-      third = arr[i];
+      second = current;
+    } else if (current > third && current < second) {
+      third = current;
     }
+  }
+
+  if (third === -Infinity) {
+    return "Not enough unique elements to find the third largest.";
   }
 
   return third;
 }
-console.log(secondLargest(arr));
+
+const arr = [2, 10, 5, 3, 4, 8, 6, 9, 12, 12];
+console.log(findThirdLargest(arr));

@@ -59,7 +59,7 @@ const list = new linkedList();
 list.insert(1); // List: 1
 list.insert(2); // List: 2 -> 1
 list.insert(3); // List: 3 -> 2 -> 1
-list.insert(1); // List: 1
+list.insert(1); // List:  1
 list.insert(2); // List: 2 -> 1
 list.insert(3); // List: 3 -> 2 -> 1
 list.insert(1); // List: 1
