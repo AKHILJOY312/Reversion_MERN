@@ -1,19 +1,15 @@
-//synchronous code --> microtask queue--> event loop phases
+const { spawn } = require("child_process");
 
-console.log("Synchronous Code - Start");
+const child = spawn("node", ["scripts.js", "AJ"]);
 
-setImmediate(() => {
-  console.log("Event Loop Phase 4: setImmediate()");
+child.stdout.on("data", (data) => {
+  console.log(data.toString());
 });
 
-Promise.resolve().then(() => {
-  console.log("Microtask 2: Promise.then()");
+child.stderr.on("data", (data) => {
+  console.log(data.toString());
 });
 
-setTimeout(() => {
-  console.log("Event Loop Phase 3: setTimeout()");
-}, 0);
-process.nextTick(() => {
-  console.log("Microtask 1: process.nextTick()");
+child.on("close", (code) => {
+  console.log(code);
 });
-console.log("Synchronous Code - End");
