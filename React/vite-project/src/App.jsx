@@ -1,47 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { CounterProvider, useCounter } from "./contex";
+import React, { useState } from "react";
 
-function Counter() {
-  const { state, action } = useCounter();
-  const [timer, setTimer] = useState(0);
-  const [flag, setFlag] = useState(false);
-
-  useEffect(() => {
-    let intervalId;
-
-    if (flag) {
-      intervalId = setInterval(() => {
-        setTimer((prev) => prev + 1);
-      }, 1000);
-    }
-
-    // Cleanup function — clears timer when component unmounts or flag changes
-    return () => {
-      clearInterval(intervalId);
-      console.log("Timer stopped or component unmounted");
-    };
-  }, [flag]);
-
+function Child({ props, suck }) {
   return (
     <div>
-      <h2>Timer: {timer}</h2>
-      <h3>Count: {state.count}</h3>
-
-      <button onClick={() => action({ type: "inc" })}>Increment</button>
-      <button onClick={() => action({ type: "dec" })}>Decrement</button>
-
-      <br />
-      <button onClick={() => setFlag(true)}>Start Timer</button>
-      <button onClick={() => setFlag(false)}>Stop Timer</button>
+      <p>{props}</p>
+      <button onClick={() => suck()}>inc</button>
     </div>
   );
 }
 
 function App() {
+  const [count, setCount] = useState(0);
+
+  function handleCount() {
+    setCount((prev) => prev + 1);
+  }
   return (
-    <CounterProvider>
-      <Counter />
-    </CounterProvider>
+    <div>
+      App
+      {count}
+      <Child props={count} suck={handleCount}></Child>
+    </div>
   );
 }
 
