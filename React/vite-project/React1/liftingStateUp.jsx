@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-function CentimeterInput({ onChange }) {
+function CentimeterInput({ handleCmChange }) {
   return (
     <div>
       <label>Centimeters: </label>
       <input
         type="number"
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => handleCmChange(e.target.value)}
         placeholder="Enter cm"
       />
     </div>
@@ -26,7 +26,7 @@ function App() {
     <div>
       <h2> Length Converter (cm to m)</h2>
 
-      <CentimeterInput onChange={handleCmChange} />
+      <CentimeterInput handleCmChange={handleCmChange} />
 
       <div>Summary: {meters} meters</div>
     </div>
