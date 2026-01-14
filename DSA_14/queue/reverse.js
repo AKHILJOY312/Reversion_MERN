@@ -22,7 +22,7 @@ class Queue {
   //   if (this.isEmpty()) return this;
 
   //   // Instead of using shift() (which is O(n)), just reverse the array
-  //   this.q.reverse(); // ✅ O(n) total, not O(n²)
+  //   this.q.reverse(); //  O(n) total, not O(n²)
   //   return this;
   // }
 }
