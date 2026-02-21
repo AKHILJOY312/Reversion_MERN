@@ -29,10 +29,10 @@ class linkedList {
     let prev = null;
     let curr = this.head;
     while (curr) {
-      const temp = curr.next;
+      const lead = curr.next;
       curr.next = prev;
       prev = curr;
-      curr = temp;
+      curr = lead;
     }
     this.head = prev;
   }
@@ -59,4 +59,4 @@ list.insert(3); // List: 3 -> 2 -> 1
 
 list.display(); // Output: 3 -> 2 -> 1
 list.reverseList();
-list.display(); // Output: 1 -> 2 -> 3 ✅
+list.display(); // Output: 1 -> 2 -> 3
