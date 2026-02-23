@@ -1,36 +1,30 @@
 import { useState } from "react";
 
-function CentimeterInput({ handleCmChange }) {
+// Child 1
+function InputBox({ value, onChange }) {
   return (
-    <div>
-      <label>Centimeters: </label>
-      <input
-        type="number"
-        onChange={(e) => handleCmChange(e.target.value)}
-        placeholder="Enter cm"
-      />
-    </div>
+    <input
+      type="text"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder="Type something..."
+    />
   );
 }
 
-function App() {
-  const [length, setLength] = useState("");
+// Child 2
+function DisplayText({ text }) {
+  return <h2>You typed: {text}</h2>;
+}
 
-  const handleCmChange = (value) => {
-    setLength(value);
-  };
-
-  const meters = length / 100;
+// Parent
+export default function App() {
+  const [text, setText] = useState("");
 
   return (
     <div>
-      <h2> Length Converter (cm to m)</h2>
-
-      <CentimeterInput handleCmChange={handleCmChange} />
-
-      <div>Summary: {meters} meters</div>
+      <InputBox value={text} onChange={setText} />
+      <DisplayText text={text} />
     </div>
   );
 }
-
-export default App;
