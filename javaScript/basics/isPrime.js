@@ -1,4 +1,4 @@
-//checking whter prime of not
+//checking weather prime or not
 function isPrime(val) {
   if (val < 2) return false;
   for (let i = 2; i * i <= val; i++) {
