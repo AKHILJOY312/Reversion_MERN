@@ -26,17 +26,9 @@ Find all employees who:
 ## Solution: Aggregation Pipeline
 
 ```javascript
-db.employees.aggregate([
-  {
-    $match: {
-      department: { $in: ["Engineering", "Data Science"] },
-      date_of_joining: { $gt: ISODate("2019-01-01T00:00:00Z") },
-    },
-  },
-  {
-    $match: {
-      $expr: { $gte: [{ $size: "$skills" }, 3] },
-    },
-  },
-]);
+db.employees.find({
+  department: { $in: ["Engineering", "Data Science"] },
+  $expr: { $gte: [{ $size: "$skills" }, 3] },
+  date_of_joining: { $gt: ISODate("2019-01-01") },
+});
 ```
