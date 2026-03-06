@@ -12,7 +12,7 @@ Find all employees who:
 
 ## 📄 Example Document
 
-```text
+```mongosh shell command
 db.employees.insertMany([
   {
     name: "Arjun Nair",
@@ -33,7 +33,7 @@ db.employees.insertMany([
     department: "Engineering",
     skills: ["Java", "Spring Boot", "Kafka"],
     salary: 920000,
-    date_of_joining: ISODate("2022-06-20")   // ← only 3 skills
+    date_of_joining: ISODate("2022-06-20")
   },
   {
     name: "Sneha Raj",
@@ -47,7 +47,7 @@ db.employees.insertMany([
     department: "Marketing",
     skills: ["SEO", "Google Ads", "Content Writing", "Canva"],
     salary: 780000,
-    date_of_joining: ISODate("2020-09-01")   // ← wrong department
+    date_of_joining: ISODate("2020-09-01")
   },
   {
     name: "Ananya Bose",
@@ -61,14 +61,14 @@ db.employees.insertMany([
     department: "Data Science",
     skills: ["Python", "TensorFlow", "SQL"],
     salary: 980000,
-    date_of_joining: ISODate("2021-07-05")   // ← only 3 skills
+    date_of_joining: ISODate("2021-07-05")
   },
   {
     name: "Meera Pillai",
     department: "Engineering",
     skills: ["Go", "Kubernetes", "Prometheus", "Terraform", "GCP"],
     salary: 1250000,
-    date_of_joining: ISODate("2018-12-20")   // ← before 2019
+    date_of_joining: ISODate("2018-12-20")
   },
   {
     name: "Aditya Varma",
@@ -91,9 +91,25 @@ Count how many employees have "Python" in their skills
 
 # Medium
 
-Find employees who have both "Python" and "SQL" in their skills
 Show people who joined in 2020 or 2021 and have at least 5 skills
 Find the person(s) with the highest salary in "Engineering"
+Find the person(s) with the second highest salary in "Engineering"
+
+```
+db.employees.aggregate([
+    {
+        $setWindowFields: {
+            sortBy: { salary: -1 },
+            output: {
+                rank: { $denseRank: {} }
+            }
+        }
+    },
+    { $match: { rank: 2 } },                  // Get rank 2 (second highest)
+    { $project: { rank: 0 } }                 // Clean up output
+])
+```
+
 List names + skill count for everyone in Engineering or Data Science
 
 # A bit harder / interesting
