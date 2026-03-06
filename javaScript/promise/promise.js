@@ -1,7 +1,3 @@
-function myDisplayer(some) {
-  document.getElementById("demo").innerHTML = some;
-}
-
 let myPromise = new Promise(function (myResolve, myReject) {
   let x = 0;
 
@@ -15,10 +11,10 @@ let myPromise = new Promise(function (myResolve, myReject) {
 });
 
 myPromise.then(
-  function (value) {
-    myDisplayer(value);
+  (value) => {
+    console.log(value);
   },
-  function (error) {
-    myDisplayer(error);
-  }
+  (error) => {
+    console.log(error);
+  },
 );

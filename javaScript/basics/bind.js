@@ -4,8 +4,16 @@
 const person = {
   firstName: "John",
   lastName: "Doe",
-  fullName: function () {
-    return this.firstName + " " + this.lastName;
+  fullName: function (city, country) {
+    return (
+      this.firstName +
+      " " +
+      this.lastName +
+      "  City: " +
+      city +
+      "  Country: " +
+      country
+    );
   },
 };
 
@@ -14,4 +22,4 @@ const member = {
   lastName: "Nilsen",
 };
 
-let fullName = person.fullName.bind(member);
+let fullName = person.fullName.bind(member, "oslo", "Norway");

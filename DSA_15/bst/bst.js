@@ -1,97 +1,165 @@
-//	Implement a binary tree
-
-class Node {
+class TreeNode {
   constructor(val) {
     this.val = val;
     this.left = null;
     this.right = null;
   }
 }
-class bt {
+
+class BST {
   constructor() {
     this.root = null;
   }
 
-  add(val) {
-    const newNode = new Node(val);
+  //  Insert (iterative)
+  insert(val) {
+    const newNode = new TreeNode(val);
 
-    if (!this.root) {
+    if (this.root === null) {
       this.root = newNode;
       return;
     }
 
-    const queue = [this.root];
-
-    while (queue.length) {
-      const node = queue.shift();
-      if (!node.left) {
-        node.left = newNode;
-        return;
+    let current = this.root;
+    while (true) {
+      if (val < current.val) {
+        if (current.left === null) {
+          current.left = newNode;
+          return;
+        }
+        current = current.left;
+      } else if (val > current.val) {
+        if (current.right === null) {
+          current.right = newNode;
+          return;
+        }
+        current = current.right;
       } else {
-        queue.push(node.left);
-      }
-
-      if (!node.right) {
-        node.right = newNode;
+        // duplicate — ignore (standard BST behavior)
         return;
-      } else {
-        queue.push(node.right);
       }
     }
   }
 
+  //  Search (iterative)
+  search(val) {
+    let current = this.root;
+    while (current !== null) {
+      if (val === current.val) return true;
+      current = val < current.val ? current.left : current.right;
+    }
+    return false;
+  }
+
+  //  Delete (iterative — more complex, but avoids recursion)
+  delete(val) {
+    let current = this.root;
+    let parent = null;
+    let isLeftChild = true;
+
+    //  Step 1: Find the node and its parent
+    while (current !== null && current.val !== val) {
+      parent = current;
+      if (val < current.val) {
+        isLeftChild = true;
+        current = current.left;
+      } else {
+        isLeftChild = false;
+        current = current.right;
+      }
+    }
+
+    if (current === null) return; // not found
+
+    //  Case 1: Node has no children (leaf)
+    if (current.left === null && current.right === null) {
+      if (current === this.root) {
+        this.root = null;
+      } else if (isLeftChild) {
+        parent.left = null;
+      } else {
+        parent.right = null;
+      }
+    }
+    //  Case 2: Node has one child
+    else if (current.right === null) {
+      // only left child
+      if (current === this.root) {
+        this.root = current.left;
+      } else if (isLeftChild) {
+        parent.left = current.left;
+      } else {
+        parent.right = current.left;
+      }
+    } else if (current.left === null) {
+      // only right child
+      if (current === this.root) {
+        this.root = current.right;
+      } else if (isLeftChild) {
+        parent.left = current.right;
+      } else {
+        parent.right = current.right;
+      }
+    }
+    // Case 3: Node has two children
+    else {
+      // Find in-order successor (min in right subtree)
+      let successor = current.right;
+      let successorParent = current;
+
+      while (successor.left !== null) {
+        successorParent = successor;
+        successor = successor.left;
+      }
+
+      // Copy successor’s value into current node
+      current.val = successor.val;
+
+      // Now delete the successor (which has at most one child — right)
+      if (successor === successorParent.left) {
+        successorParent.left = successor.right; // successor has no left by definition
+      } else {
+        // happens when successor is immediate right child (no left subtree)
+        successorParent.right = successor.right;
+      }
+    }
+  }
+
+  //  In-order traversal (iterative — using stack)
   inOrder() {
     const result = [];
-    function traversal(node) {
-      if (!node) return;
+    const stack = [];
+    let current = this.root;
 
-      traversal(node.left);
-      result.push(node.val);
-      traversal(node.right);
+    while (stack.length > 0 || current !== null) {
+      // Go left as far as possible
+      while (current !== null) {
+        stack.push(current);
+        current = current.left;
+      }
+      // Process node
+      current = stack.pop();
+      result.push(current.val);
+      // Move to right subtree
+      current = current.right;
     }
-    traversal(this.root);
+
     return result;
   }
-  // Optimized height that also checks balance
-  height(node = this.root) {
-    function check(node) {
-      if (!node) return { height: 0, balanced: true };
 
-      const left = check(node.left);
-      const right = check(node.right);
-
-      const balanced =
-        left.balanced &&
-        right.balanced &&
-        Math.abs(left.height - right.height) <= 1;
-
-      return {
-        height: Math.max(left.height, right.height) + 1,
-        balanced,
-      };
-    }
-
-    return check(node); // returns { height, balanced }
+  //  Min (iterative)
+  min() {
+    let current = this.root;
+    if (!current) return null;
+    while (current.left !== null) current = current.left;
+    return current.val;
   }
 
-  // Now isBalanced can simply use height()
-  isBalanced() {
-    return this.height().balanced;
+  //  Max (iterative)
+  max() {
+    let current = this.root;
+    if (!current) return null;
+    while (current.right !== null) current = current.right;
+    return current.val;
   }
 }
-
-const binaryTree = new bt();
-
-binaryTree.add(3);
-binaryTree.add(4);
-binaryTree.add(6);
-binaryTree.add(7);
-binaryTree.add(8);
-binaryTree.add(1);
-binaryTree.add(45);
-binaryTree.add(76);
-binaryTree.add(60);
-
-console.log(binaryTree.inOrder());
-console.log(binaryTree.height().height);
-console.log(binaryTree.isBalanced());

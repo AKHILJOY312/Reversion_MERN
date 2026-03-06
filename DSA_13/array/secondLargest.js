@@ -1,18 +1,25 @@
-//find the second largest element in the array
-const arr = [2, 10, 5, 3, 4, 8, 6, 9, 12, 12];
-
 function secondLargest(arr) {
-  let first = 0;
-  let second = 0;
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > first) {
+  let first = -Infinity;
+  let second = -Infinity;
+
+  for (const num of arr) {
+    // skip duplicates of the largest
+    if (num === first) continue;
+
+    // new largest
+    if (num > first) {
       second = first;
-      first = arr[i];
-    } else if (second < arr[i] && arr[i] !== first) {
-      second = arr[i];
+      first = num;
+    }
+
+    // new second largest
+    else if (num > second) {
+      second = num;
     }
   }
-  console.log(first);
-  return second;
+
+  return second === -Infinity ? "Not enough unique elements" : second;
 }
+
+const arr = [2, 10, 5, 3, 4, 8, 6, 9, 12, 12];
 console.log(secondLargest(arr));
