@@ -1,15 +1,20 @@
-// script.js
+// main.js
+const { fork } = require("child_process");
 
-// Get command-line arguments (node script.js sam)
-// process.argv[0] = 'node'
-// process.argv[1] = 'script.js'
-// process.argv[2] = 'sam'
+console.log("Main process started.");
 
-const name = process.argv[2];
+try {
+  const child = fork("./heavy-task.js");
 
-if (!name) {
-  console.error("Usage: node script.js <name>");
-  process.exit(1);
+  child.on("message", (m) => console.log(m.result));
+
+  child.on("error", (err) => console.error("Child error:", err));
+
+  child.on("exit", (code) => {
+    if (code !== 0) console.error("Child exited with code", code);
+  });
+} catch (err) {
+  console.error("Fork failed:", err);
 }
 
-console.log(`Hello, ${name}!`);
+console.log("Main process is non-blocked and continues its work.");
