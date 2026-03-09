@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useReducer } from "react";
 const initial = {
   num1: 0,

@@ -16,6 +16,75 @@ documents based on conditions.
 
 ---
 
+### Basic Update Methods
+
+- `updateOne(filter, update, options)`
+- `updateMany(filter, update, options)`
+- `replaceOne(filter, replacement)`
+- `findOneAndUpdate(filter, update, options)`
+- `bulkWrite()` → Perform multiple operations in one call
+
+**Common Options**
+
+- `{ upsert: true }`
+- `{ returnDocument: "after" }`
+- `{ arrayFilters: [...] }`
+
+---
+
+### Field Update Operators
+
+- `$set` → Assign new value(s) to field(s)
+- `$unset` → Remove field(s) completely
+- `$rename` → Rename a field
+- `$currentDate` → Set field to the current date or timestamp
+
+---
+
+### Arithmetic & Numeric Operators
+
+- `$inc` → Increment a number by a value
+- `$mul` → Multiply a number by a value
+- `$min` → Update only if the new value is smaller
+- `$max` → Update only if the new value is larger
+
+---
+
+### Array Update Operators (Core)
+
+- `$push` → Append element(s) to an array
+- `$addToSet` → Add element only if it does not already exist
+- `$pop` → Remove first (`-1`) or last (`1`) array element
+- `$pull` → Remove elements matching a condition
+- `$pullAll` → Remove elements matching values in an array
+
+---
+
+### Array Modifiers (Used with `$push`)
+
+- `$each` → Push multiple elements
+- `$position` → Insert at a specific index
+- `$slice` → Limit array size after push
+- `$sort` → Sort array elements after push
+
+---
+
+### Positional Operators (Target Array Elements)
+
+- `$` → Update the **first matched array element**
+- `$[]` → Update **all array elements**
+- `$[<identifier>]` → Update elements matching `arrayFilters`
+
+---
+
+### Conditional & Advanced Updates
+
+- `$elemMatch` → Match specific elements inside arrays
+- `upsert: true` → Insert document if no match is found
+- `arrayFilters` → Control which array elements get updated
+
+---
+
 ## 🔹 2. Query Operators
 
 ### Comparison
