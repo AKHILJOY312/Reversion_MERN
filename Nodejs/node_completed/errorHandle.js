@@ -10,6 +10,16 @@ app.get("/posts", (req, res) => {
   res.json({ message: "List of posts" });
 });
 
+//  500 Error handler (Server errors)
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+
+  res.status(500).json({
+    error: "Internal Server Error",
+    message: err.message || "Something unexpected happened",
+  });
+});
+
 // ❗ Catch-all handler for undefined routes (MUST be at the end)
 app.use((req, res, next) => {
   res.status(404).json({
