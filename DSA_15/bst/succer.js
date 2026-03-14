@@ -39,9 +39,9 @@ root.left.right.right = new Node(14);
 function Succor(root, target) {
   let post = null;
   let found = false;
-  function inorder(root) {
+  function inOrder(root) {
     if (!root) return null;
-    inorder(root.left);
+    inOrder(root.left);
     if (found && post === null) {
       post = root.data;
       return;
@@ -50,10 +50,10 @@ function Succor(root, target) {
     if (root.data === target) {
       found = true;
     }
-    inorder(root.right);
+    inOrder(root.right);
   }
-  inorder(root);
+  inOrder(root);
 
   return post;
 }
-console.log(Succor(root, 22));
+console.log(Succor(root, 22)); //next node in ascending order
