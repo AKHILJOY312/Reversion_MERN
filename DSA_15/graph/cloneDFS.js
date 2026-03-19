@@ -1,27 +1,30 @@
-function cloneDFS() {
-  const newGraph = new Graph();
-  const visited = new Set();
-  const adjList = this.adjList;
-
-  const traverse = (vertex) => {
-    if (!vertex || visited.has(vertex)) return;
-
-    visited.add(vertex);
-
-    for (let neighbor of adjList[vertex]) {
-      newGraph.addEdge(vertex, neighbor);
-
-      if (!visited.has(neighbor)) {
-        traverse(neighbor);
-      }
-    }
-  };
-
-  for (let vertex in adjList) {
-    if (!visited.has(vertex)) {
-      traverse(vertex);
-    }
+class Graph {
+  constructor() {
+    this.adjList = {};
   }
 
-  return newGraph;
+  cloneDFS() {
+    const newGraph = new Graph();
+
+    for (let v in this.adjList) {
+      newGraph.addVertex(v);
+    }
+
+    const visited = new Set();
+    const dfs = (v) => {
+      visited.add(v);
+      for (let neighbor of this.adjList[v]) {
+        newGraph.addEdge(v, neighbor);
+        if (!visited.has(neighbor)) {
+          dfs(neighbor);
+        }
+      }
+    };
+
+    for (let v in this.adjList) {
+      if (!visited.has(v)) dfs(v);
+    }
+
+    return newGraph;
+  }
 }
