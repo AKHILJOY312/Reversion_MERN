@@ -1,19 +1,24 @@
-// const fs = require("fs");
-// const zlib = require("zlib"); // Built-in compression module
+// console.log("Start");
 
-// // 1. Source (Readable)
-// const source = fs.createReadStream("input.txt");
+// let i = 0;
 
-// // 2. Destination (Writable)
-// const destination = fs.createWriteStream("input.txt.gz");
+// function heavyTask() {
+//   if (i >= 1e9) {
+//     console.log("After heavy loop");
+//     return;
+//   }
 
-// // 3. Transform Stream (Compressing)
-// const gzip = zlib.createGzip();
+//   // do small chunk of work
+//   for (let j = 0; j < 1e6; j++) {
+//     i++;
+//   }
 
-// // 4. Chain them together: Source -> Compress -> Destination
-// source
-//   .pipe(gzip)
-//   .pipe(destination)
-//   .on("finish", () => {
-//     console.log("File compressed successfully using chaining!");
-//   });
+//   // give control back to event loop
+//   setTimeout(heavyTask, 0);
+// }
+
+// heavyTask();
+
+// setTimeout(() => {
+//   console.log("Timeout executed");
+// }, 1000);
