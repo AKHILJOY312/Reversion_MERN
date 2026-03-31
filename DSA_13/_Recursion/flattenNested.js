@@ -1,8 +1,8 @@
-//flatern a nested array
-//give a nesed array
+//flatten a nested array
+//give a nested array
 //go to each element
-//check if the element is array or not if array use the same funtion ;
-//retrun the result
+//check if the element is array or not if array use the same function ;
+//return the result
 
 function flattenRecursively(arr) {
   let result = [];
