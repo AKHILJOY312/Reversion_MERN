@@ -1,6 +1,6 @@
-const express = require("express");
-const crypto = require("crypto");
-const fs = require("fs");
+import express from "express";
+import crypto from "crypto";
+import fs from "fs";
 
 const app = express();
 app.use(express.json());

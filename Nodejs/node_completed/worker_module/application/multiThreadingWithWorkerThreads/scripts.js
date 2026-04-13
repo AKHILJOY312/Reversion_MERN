@@ -1,11 +1,13 @@
-const express = require("express");
-const { Worker } = require("worker_threads");
+import express from "express";
+import { Worker } from "worker_threads";
 const app = express();
 
 // Helper function to manage the worker lifecycle
 function runWorker() {
   return new Promise((resolve, reject) => {
-    const worker = new Worker("./worker.js");
+    const worker = new Worker(new URL("./worker.js", import.meta.url), {
+      type: "module",
+    });
     worker.on("message", resolve);
     worker.on("error", reject);
     worker.on("exit", (code) => {

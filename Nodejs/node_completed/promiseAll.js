@@ -1,4 +1,4 @@
-const { setTimeout: delay } = require("node:timers/promises");
+import { setTimeout as delay } from "node:timers/promises";
 
 const fetchData1 = delay(1000).then(() => "Data from API 1");
 const fetchData2 = delay(2000).then(() => {

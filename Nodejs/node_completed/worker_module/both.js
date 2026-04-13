@@ -1,8 +1,8 @@
-const { Worker, isMainThread, parentPort } = require("worker_threads");
+import { Worker, isMainThread, parentPort } from "worker_threads";
 
 if (isMainThread) {
   // Main thread creates a worker.
-  const worker = new Worker(__filename);
+  const worker = new Worker(new URL(import.meta.url), { type: "module" });
   worker.on("message", (message) => {
     console.log("Message from worker:", message);
   });

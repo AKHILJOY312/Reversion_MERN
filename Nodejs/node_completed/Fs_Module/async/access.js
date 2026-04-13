@@ -1,4 +1,4 @@
-const fs = require("fs");
+import fs from "fs";
 
 fs.access("file.txt", fs.constants.F_OK, (err) => {
   if (err) {

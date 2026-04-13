@@ -1,5 +1,5 @@
-const fs = require("fs");
-const zlib = require("zlib"); // Built-in compression module
+import fs from "fs";
+import zlib from "zlib"; // Built-in compression module
 
 // 1. Source (Readable)
 const source = fs.createReadStream("input.txt");

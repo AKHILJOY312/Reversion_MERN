@@ -1,4 +1,4 @@
-const { parentPort } = require("worker_threads");
+import { parentPort } from "worker_threads";
 
 let sum = 0;
 for (let i = 0; i < 1e10; i++) {

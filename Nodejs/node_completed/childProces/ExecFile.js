@@ -1,4 +1,4 @@
-const { execFile } = require("child_process");
+import { execFile } from "child_process";
 
 execFile("python", ["script.py", "AJ"], (err, stdout, stderr) => {
   if (err) console.error(err);

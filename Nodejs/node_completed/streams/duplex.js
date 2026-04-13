@@ -1,4 +1,4 @@
-const { Duplex } = require("stream");
+import { Duplex } from "stream";
 
 class MyDuplex extends Duplex {
   constructor() {

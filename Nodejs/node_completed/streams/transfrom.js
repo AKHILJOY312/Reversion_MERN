@@ -1,5 +1,5 @@
-const { Transform } = require("stream");
-const fs = require("fs");
+import { Transform } from "stream";
+import fs from "fs";
 
 const upperCaseTransform = new Transform({
   transform(chunk, encoding, callback) {

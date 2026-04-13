@@ -1,4 +1,4 @@
-const fs = require("fs/promises");
+import * as fs from "fs/promises";
 
 async function writeExample() {
   try {

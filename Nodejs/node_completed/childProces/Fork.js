@@ -1,5 +1,5 @@
 // main.js
-const { fork } = require("child_process");
+import { fork } from "child_process";
 
 console.log("Main process started.");
 try {

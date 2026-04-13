@@ -1,4 +1,4 @@
-const fs = require("fs");
+import fs from "fs";
 
 try {
   const data = fs.readFileSync("data.txt", "utf-8");

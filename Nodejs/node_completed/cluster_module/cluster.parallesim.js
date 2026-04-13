@@ -1,6 +1,6 @@
-const cluster = require("cluster");
-const http = require("http");
-const os = require("os");
+import cluster from "cluster";
+import http from "http";
+import os from "os";
 
 if (cluster.isMaster) {
   os.cpus().forEach(() => cluster.fork()); // create workers

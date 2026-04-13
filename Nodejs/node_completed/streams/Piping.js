@@ -1,4 +1,4 @@
-const fs = require("fs");
+import fs from "fs";
 
 // 1. Create a readable stream from an existing file
 const readableStream = fs.createReadStream("input.txt");

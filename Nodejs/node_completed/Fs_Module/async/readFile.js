@@ -1,5 +1,5 @@
-const fs = require("fs");
-const fsPromise = require("fs/promises");
+import fs from "fs";
+import * as fsPromise from "fs/promises";
 
 // callback approach
 fs.readFile("./text.txt", "utf8", (err, data) => {

@@ -1,4 +1,4 @@
-const fs = require("fs");
+import fs from "fs";
 
 const readStream = fs.createReadStream("data.txt", "utf-8");
 

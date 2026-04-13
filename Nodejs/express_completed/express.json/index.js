@@ -1,6 +1,7 @@
-const express = require("express");
+import cors from "cors";
+import express from "express";
+
 const app = express();
-const cors = require("cors");
 
 app.use(cors());
 // Middleware to parse JSON bodies (e.g., from POST requests)

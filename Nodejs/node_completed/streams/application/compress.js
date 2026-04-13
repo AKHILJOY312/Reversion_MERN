@@ -1,5 +1,5 @@
-const fs = require("fs");
-const zlib = require("zlib");
+import fs from "fs";
+import zlib from "zlib";
 
 fs.createReadStream("data.txt")
   .pipe(zlib.createGzip())
