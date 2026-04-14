@@ -1,5 +1,6 @@
 import EventEmitter from "events";
 const emitter = new EventEmitter();
+
 emitter.on("eventName", (data) => {
   console.log("Event received:", data);
 });
