@@ -1,24 +1,33 @@
 import express from "express";
-
 const app = express();
-const router = express.Router();
 
-router.use((req, res, next) => {
-  console.log("middleware is called");
-  next();
+// Your actual routes
+app.get("/users", (req, res) => {
+  res.json({ message: "List of users" });
 });
 
-router.get("/a1", (req, res) => {
-  res.send("a1 is working fine..");
+app.get("/posts", (req, res) => {
+  res.json({ message: "List of posts" });
 });
 
-router.all("/a2", (req, res) => {
-  console.log("a2 is called", req.method);
-  res.send("a2 is working");
+// 404
+app.use((req, res, next) => {
+  res.status(404).json({
+    error: "Not Found",
+    message: `The endpoint '${req.method} ${req.originalUrl}' does not exist.`,
+  });
 });
 
-app.use("/admin", router);
+// 500
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+
+  res.status(500).json({
+    error: "Internal Server Error",
+    message: err.message || "Something unexpected happened",
+  });
+});
 
 app.listen(3000, () => {
-  console.log("Server is running");
+  console.log("Server running on http://localhost:3000");
 });
