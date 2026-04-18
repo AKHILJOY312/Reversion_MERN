@@ -11,15 +11,11 @@ const key = crypto.createHash("sha256").update("my-secret-key").digest();
 //  Separate encryption function
 function encrypt(data) {
   const iv = crypto.randomBytes(16);
-
   const cipher = crypto.createCipheriv(algorithm, key, iv);
-
-  let encrypted = cipher.update(data, "utf8", "hex");
-  encrypted += cipher.final("hex");
 
   return {
     iv: iv.toString("hex"),
-    encrypted,
+    encrypted: cipher.update(data, "utf8", "hex") + cipher.final("hex"),
   };
 }
 
