@@ -1,16 +1,16 @@
-const user = {
+const userObject = {
   name: "AJ",
   age: 20,
 };
 
-const handler = {
-  get: function (target, prop) {
+const handlerObject = {
+  get: function (targetedObject, prop) {
     console.log(`Property "${prop}" was accessed.`);
-    return target[prop];
+    return targetedObject[prop];
   },
 };
 
-const proxyUser = new Proxy(user, handler);
+const proxyUser = new Proxy(userObject, handlerObject);
 
 console.log(proxyUser.name);
 // Logs: Property "name" was accessed.
