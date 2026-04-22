@@ -2,7 +2,7 @@ function* randomUniqueNumbers(range) {
   yield Math.floor(Math.random() * range);
 }
 
-// 🚀 Usage Example
+//  Usage Example
 const gen = randomUniqueNumbers(10);
 
 console.log(gen.next().value); // e.g. 7
