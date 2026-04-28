@@ -84,7 +84,7 @@ function App() {
       <h2>Count: {count}</h2>
 
       <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
-        {/* Increment */}
+        {/* Increments */}
         <button onClick={() => dispatch(increment())}>+</button>
 
         {/* Decrement */}
