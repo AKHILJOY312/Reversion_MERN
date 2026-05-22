@@ -1,14 +1,16 @@
 const arr = [1, 1, 2, 2, 3, 3, 4, 5, 6, 6, 7];
 const newArr = [];
-//filter the uniqe number
+//filter the unique number
 const seen = {};
 for (let i = 0; i < arr.length; i++) {
-  if (seen[arr[i]]) {
-    continue;
-  } else {
-    newArr.push(arr[i]);
+  seen[arr[i]] = (seen[arr[i]] || 0) + 1;
+}
 
-    seen[arr[i]] = true;
+for (let num in seen) {
+  if (seen[num] == 1) {
+    newArr.push(num);
   }
 }
-console.log(newArr);
+
+console.log(seen);
+console.log(newArr); //[ 4, 5, 7]

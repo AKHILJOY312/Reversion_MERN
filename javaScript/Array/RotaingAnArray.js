@@ -1,31 +1,34 @@
-// JavaScript Program to left rotate the array by d positions
-// using temporary array
-
-// Function to rotate array
-function rotateArr(arr, d) {
-  let n = arr.length;
-
-  // Handle case when d > n
-  d %= n;
-
-  // Storing rotated version of array
-  let temp = new Array(n);
-
-  // Copy last n - d elements to the front of temp
-  for (let i = 0; i < n - d; i++) temp[i] = arr[d + i];
-
-  // Copy the first d elements to the back of temp
-  for (let i = 0; i < d; i++) temp[n - d + i] = arr[i];
-
-  // Copying the elements of temp in arr
-  // to get the final rotated array
-  for (let i = 0; i < n; i++) arr[i] = temp[i];
+// 1. Modified Two-Pointer Reversal Function
+function reverseArray(arr, left, right) {
+  while (left < right) {
+    [arr[left], arr[right]] = [arr[right], arr[left]];
+    left++;
+    right--;
+  }
 }
 
+// 2. Optimized In-Place Rotation Function
+function rotateArr(arr, d) {
+  const n = arr.length;
+
+  // Handle cases where d is greater than array length
+  d %= n;
+  if (d === 0) return;
+
+  // Step 1: Reverse the first 'd' elements
+  reverseArray(arr, 0, d - 1);
+
+  // Step 2: Reverse the remaining 'n - d' elements
+  reverseArray(arr, d, n - 1);
+
+  // Step 3: Reverse the entire array
+  reverseArray(arr, 0, n - 1);
+}
+
+// --- Execution ---
 const arr = [1, 2, 3, 4, 5, 6];
 const d = 2;
 
 rotateArr(arr, d);
 
-// Print the rotated array
-console.log(arr.join(" "));
+console.log(arr.join(" ")); // Output: 3 4 5 6 1 2
