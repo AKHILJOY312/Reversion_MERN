@@ -7,7 +7,7 @@ app.use(express.json());
 
 // key and iv
 const key = crypto.createHash("sha256").update("mysecretkey").digest();
-const iv = Buffer.alloc(16, 0);
+const iv = Buffer.alloc(16, 0); //(Initialization Vector)
 
 // encrypt
 function encrypt(text) {

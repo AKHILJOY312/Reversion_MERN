@@ -1,12 +1,28 @@
-import * as fs from "fs/promises";
+// Promise Version
+import * as fsPromises from "fs/promises";
 
-async function writeExample() {
+// Callback Version
+import * as fs from "fs";
+
+async function writeWithPromise() {
   try {
-    await fs.writeFile("data.txt", "Hello AJ\n");
-    console.log("File written successfully");
+    await fsPromises.writeFile("promise-data.txt", "Hello AJ (Promise)\n");
+    console.log("Promise: File written successfully");
   } catch (err) {
     console.log(err);
   }
 }
 
-writeExample();
+function writeWithCallback() {
+  fs.writeFile("callback-data.txt", "Hello AJ (Callback)\n", (err) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+
+    console.log("Callback: File written successfully");
+  });
+}
+
+writeWithPromise();
+writeWithCallback();

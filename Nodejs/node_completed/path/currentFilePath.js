@@ -1,3 +1,8 @@
+//const path = require("path");
+
+// console.log(__filename);
+// console.log(__dirname);
+
 import { fileURLToPath } from "url";
 import path from "path";
 
